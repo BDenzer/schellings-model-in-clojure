@@ -13,7 +13,9 @@
 ;;; definitely more complicated than it would be if we had
 ;;; a synchronous model.
 (defn reset-world [evnt])
-(defn toggle-start-stop [evnt])
+(defn toggle-start-stop [evnt]
+
+ )
 
 ;;; It's possible that all the binding and watcher
 ;;; stuff should have happened here, but I'm not

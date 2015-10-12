@@ -29,6 +29,11 @@
   ; probably where you want to call send to handle whatever
   ; needs to be done. Otherwise everything will end up happening in
   ; the main thread.
+
+  "assuming positions store red/blue count (remove old state from position color count, add new position to color count)
+  not sure on exact syntax to get this to work
+  "
+  (if (= @old-state :red) (inc "me.?"blueNeighbors) (inc redNeighbors))
   (println (str "I am " me " and my neighbor " neighbor " (key " key ") changed from " old-state " to " new-state)))
 
 ;; You may be able to leave this alone, but feel free to change it
@@ -41,7 +46,9 @@
     (atom nil)
     (let [color (if (< (rand) @balance-atom) :red :blue)
           individual (agent color)
-          position (atom individual)]
+          position (atom individual)
+          redNeighbors(atom "counts generated from neighbors at initialization, from there on it should be handled in handle-neighbor change")
+          blueNeighbors(atom )]
       ; I need to have all the individuals together in
       ; a collection so I can `send` them all a "message"
       ; when, e.g., we hit the "Start" button.
@@ -60,8 +67,6 @@
   ; This returns a totally random color so it should be quite
   ; obvious if you haven't dealt with this. You can specify colors
   ; with things like strings ("blue") or keywords (:red).
-  (seesaw.color/color (rand-int 256)
-                      (rand-int 256)
-                      (rand-int 256)
-                      (rand-int 256))
+  (when individual
+	  (if (= @individual :red) :red :blue))
   )
