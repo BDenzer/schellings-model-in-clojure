@@ -95,6 +95,7 @@
         board-map (make-board-map coordinates)
         tile-map (make-tile-map coordinates)]
     (add-neighborhood-watchers board-map)
+    ;(Initialize-neighbor-colors)
     (bind-tiles coordinates board-map tile-map)
     (create-tile-array coordinates tile-map board-map)))
 

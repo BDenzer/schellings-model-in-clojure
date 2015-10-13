@@ -33,7 +33,8 @@
   "assuming positions store red/blue count (remove old state from position color count, add new position to color count)
   not sure on exact syntax to get this to work
   "
-  (if (= @old-state :red) (inc "me.?"blueNeighbors) (inc redNeighbors))
+  ;Not proper code, just proof of conecpt
+ ; "(if (= @old-state :red) (inc me.?blueNeighbors) (inc redNeighbors))"
   (println (str "I am " me " and my neighbor " neighbor " (key " key ") changed from " old-state " to " new-state)))
 
 ;; You may be able to leave this alone, but feel free to change it
@@ -47,8 +48,11 @@
     (let [color (if (< (rand) @balance-atom) :red :blue)
           individual (agent color)
           position (atom individual)
-          redNeighbors(atom "counts generated from neighbors at initialization, from there on it should be handled in handle-neighbor change")
-          blueNeighbors(atom )]
+          ;Hoping to subsititue this in for position, but this causes a lot of problems in view, we need to extract the individual from the list
+          ;position (atom (:individual individual, :redNeightbors 0, :blueNeighbors 0))
+          ]
+      ;"redNeighbors(atom counts generated from neighbors at initialization, from there on it should be handled in handle-neighbor change)
+      ;    blueNeighbors(atom )"
       ; I need to have all the individuals together in
       ; a collection so I can `send` them all a "message"
       ; when, e.g., we hit the "Start" button.
