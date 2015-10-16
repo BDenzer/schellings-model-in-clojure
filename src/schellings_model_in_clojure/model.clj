@@ -29,12 +29,15 @@
   ; probably where you want to call send to handle whatever
   ; needs to be done. Otherwise everything will end up happening in
   ; the main thread.
-
+;(println @old-state)
   "assuming positions store red/blue count (remove old state from position color count, add new position to color count)
   not sure on exact syntax to get this to work
   "
   ;Not proper code, just proof of conecpt
  ; "(if (= @old-state :red) (inc me.?blueNeighbors) (inc redNeighbors))"
+;(when :individual me
+;  (if (and (= :individual @oldstate :red) (= :individual @newstate :blue)) (and (!swap :blueNeighbors me inc) (!swap :redNeighbors me dec)))
+;  (if (and (= :individual @oldstate :blue) (= :individual @newstate :red)) (and (!swap :redNeighbors me inc) (!swap :blueNeighbors me dec))))
   (println (str "I am " me " and my neighbor " neighbor " (key " key ") changed from " old-state " to " new-state)))
 
 ;; You may be able to leave this alone, but feel free to change it
@@ -47,7 +50,7 @@
     (atom nil)
     (let [color (if (< (rand) @balance-atom) :red :blue)
           individual (agent color)
-          position (atom individual)
+          position (atom {:individual individual, :redNeighbors 0, :blueNeighbors 0})
           ;Hoping to subsititue this in for position, but this causes a lot of problems in view, we need to extract the individual from the list
           ;position (atom (:individual individual, :redNeightbors 0, :blueNeighbors 0))
           ]
@@ -67,10 +70,10 @@
    at that position. You'll need to implement this so that it returns
    desired color, or 'white' if there's no individual there (i.e., we
    get passed nil)."
-  [individual]
+  [positionInfo]
   ; This returns a totally random color so it should be quite
   ; obvious if you haven't dealt with this. You can specify colors
   ; with things like strings ("blue") or keywords (:red).
-  (when individual
-	  (if (= @individual :red) :red :blue))
+  (when :individual positionInfo
+	  (if (= (:individual positionInfo) :red) :red :blue))
   )
