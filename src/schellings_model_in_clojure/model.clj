@@ -35,9 +35,9 @@
   "
   ;Not proper code, just proof of conecpt
  ; "(if (= @old-state :red) (inc me.?blueNeighbors) (inc redNeighbors))"
-;(when :individual me
-;  (if (and (= @(:individual @oldstate) :red) (= @(:individual @newstate) :blue)) (and (!swap (:blueNeighbors me) inc) (!swap (:redNeighbors me) dec)))
-;  (if (and (= @(:individual @oldstate) :blue) (= @(:individual @newstate) :red)) (and (!swap (:redNeighbors me) inc) (!swap (:blueNeighbors me) dec))))
+;(when (:individual me)
+;  (if (and (= @(:individual @oldstate) :red) (= @(:individual @newstate))) :blue (and (!swap (:blueNeighbors @me) inc) (!swap (:redNeighbors @me) dec)))
+;  (if (and (= @(:individual @oldstate) :blue) (= @(:individual @newstate))) :red (and (!swap (:redNeighbors @me) inc) (!swap (:blueNeighbors @me) dec))))
   (println (str "I am " me " and my neighbor " neighbor " (key " key ") changed from " old-state " to " new-state)))
 
 ;; You may be able to leave this alone, but feel free to change it
